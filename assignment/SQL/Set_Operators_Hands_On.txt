@@ -1,0 +1,47 @@
+Hands-on Assignments for Using the Set Operators
+
+1.  Question: Create a matrix query to display the JOB, salary for that
+    job based on department number (10, 20, 30), and total salary.
+
+Answer:
+
+    SELECT JOB,
+    SUM(DECODE(DEPTNO,10,SAL,0)) AS DEPT10,
+    SUM(DECODE(DEPTNO,20,SAL,0)) AS DEPT20,
+    SUM(DECODE(DEPTNO,30,SAL,0)) AS DEPT30,
+    SUM(SAL) AS TOTAL
+    FROM EMP
+    GROUP BY JOB;
+
+2.  Question: Using set operators display DEPTNO, SUM(SAL) for each
+    department, JOB, SUM(SAL) for each job and Total Salary.
+
+Answer:
+
+    SELECT TO_CHAR(DEPTNO) AS DETAILS, SUM(SAL) AS TOTAL_SALARY
+    FROM EMP
+    GROUP BY DEPTNO
+    UNION
+    SELECT JOB, SUM(SAL)
+    FROM EMP
+    GROUP BY JOB
+    UNION
+    SELECT 'TOTAL', SUM(SAL)
+    FROM EMP;
+
+3.  Question: Using set operator display the JOB and DEPTNO of employees
+    working in departments 20, 10 and 30 in that order.
+
+Answer:
+
+    SELECT JOB, DEPTNO
+    FROM EMP
+    WHERE DEPTNO = 20
+    UNION ALL
+    SELECT JOB, DEPTNO
+    FROM EMP
+    WHERE DEPTNO = 10
+    UNION ALL
+    SELECT JOB, DEPTNO
+    FROM EMP
+    WHERE DEPTNO = 30;

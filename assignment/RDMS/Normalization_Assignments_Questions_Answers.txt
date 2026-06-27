@@ -1,0 +1,38 @@
+Hands-on Assignments for Normalization
+
+1.  Observe the structure of the given EMPLOYEE table and suggest if
+    this table can be further normalized.
+
+Table: EMPNO, ENAME, SAL, DEPTNO, DNAME, LOC
+
+Answer: - Current Normal Form: 2NF (assuming EMPNO is the primary
+key). - There is a transitive dependency: DEPTNO → DNAME, LOC. - Convert
+to 3NF by splitting into:
+
+EMPLOYEE(EMPNO, ENAME, SAL, DEPTNO) DEPARTMENT(DEPTNO, DNAME, LOC)
+
+2.  Observe the structure of the given STUDENT table and suggest if this
+    table can be further normalized.
+
+Table: ROLLNO, NAME, AGE, EXAM, MARKS, GRADE
+
+Answer: - Current Normal Form: 2NF (assuming one record per student per
+exam). - GRADE depends on MARKS, creating a transitive dependency. -
+Convert to 3NF by splitting into:
+
+STUDENT(ROLLNO, NAME, AGE) RESULT(ROLLNO, EXAM, MARKS) GRADE(MARKS,
+GRADE)
+
+3.  Observe the structure of the given EMPLOYEE table and identify the
+    problem.
+
+Table: EMPNO, PROJECT_NO, NO_OF_DAYS, CUSTOMERNAME
+
+Composite Primary Key: (EMPNO, PROJECT_NO)
+
+Answer: - Problem: Partial dependency because CUSTOMERNAME depends only
+on PROJECT_NO, not on the full composite key. - Current Normal Form:
+1NF. - Convert to 2NF by splitting into:
+
+EMPLOYEE_PROJECT(EMPNO, PROJECT_NO, NO_OF_DAYS) PROJECT(PROJECT_NO,
+CUSTOMERNAME)

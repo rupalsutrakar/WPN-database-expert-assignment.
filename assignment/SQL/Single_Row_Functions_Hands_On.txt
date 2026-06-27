@@ -1,0 +1,89 @@
+Hands-on Assignments for Using Single-Row Functions
+
+1.  Current date.
+
+    SELECT SYSDATE AS "Date" FROM DUAL;
+
+2.  Employee number, last name, salary, salary increased by 15.5%.
+
+    SELECT EMPNO, ENAME, SAL, ROUND(SAL*1.155) AS "New Salary"
+    FROM EMP;
+
+3.  Add Increase column.
+
+    SELECT EMPNO, ENAME, SAL,
+    ROUND(SAL*1.155) AS "New Salary",
+    ROUND(SAL*1.155)-SAL AS "Increase"
+    FROM EMP;
+
+4.  
+
+    SELECT INITCAP(LOWER(ENAME)) AS NAME,
+    LENGTH(ENAME) AS LENGTH
+    FROM EMP
+    WHERE ENAME LIKE 'J%' OR ENAME LIKE 'A%' OR ENAME LIKE 'M%'
+    ORDER BY ENAME;
+
+5.  
+
+    SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE UPPER('&LETTER')||'%';
+
+6.  
+
+    SELECT ENAME,
+    CEIL(MONTHS_BETWEEN(SYSDATE,HIREDATE)) AS MONTHS_WORKED
+    FROM EMP
+    ORDER BY MONTHS_WORKED;
+
+7.  
+
+    SELECT ENAME||' earns '||SAL||' monthly but wants '||(SAL*3) AS "Dream Salaries"
+    FROM EMP;
+
+8.  
+
+    SELECT ENAME, LPAD(SAL,15,'$') AS SALARY
+    FROM EMP;
+
+9.  
+
+    SELECT ENAME, HIREDATE,
+    NEXT_DAY(ADD_MONTHS(HIREDATE,6),'MONDAY') AS REVIEW
+    FROM EMP;
+
+10. 
+
+    SELECT ENAME, HIREDATE,
+    TO_CHAR(HIREDATE,'DAY') AS DAY
+    FROM EMP
+    ORDER BY TO_CHAR(HIREDATE,'D');
+
+11. 
+
+    SELECT ENAME,NVL(TO_CHAR(COMM),'No Commission') AS COMM
+    FROM EMP;
+
+12. 
+
+    SELECT SUBSTR(ENAME,1,8)||' '||RPAD('*',SAL/1000,'*') AS EMPLOYEES_AND_THEIR_SALARIES
+    FROM EMP
+    ORDER BY SAL DESC;
+
+13. 
+
+    SELECT ENAME,
+    DECODE(JOB,'PRESIDENT','A','MANAGER','B','SALESMAN','C','CLERK','D') AS GRADE
+    FROM EMP;
+
+14. 
+
+    SELECT ENAME,
+    CASE
+    WHEN JOB='PRESIDENT' THEN 'A'
+    WHEN JOB='MANAGER' THEN 'B'
+    WHEN JOB='SALESMAN' THEN 'C'
+    WHEN JOB='CLERK' THEN 'D'
+    END AS GRADE
+    FROM EMP;

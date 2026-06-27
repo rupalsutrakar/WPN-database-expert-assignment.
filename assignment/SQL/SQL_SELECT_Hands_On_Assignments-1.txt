@@ -1,0 +1,26 @@
+Hands-on Assignments for Retrieving Data Using the SQL SELECT Statement
+
+1.  Question: Determine the Structure of DEPT Table and its Contents.
+
+Answer:
+
+    DESC DEPT;
+    SELECT * FROM DEPT;
+
+2.  Question: Determine the Structure of EMP Table and its Contents.
+
+Answer:
+
+    DESC EMP;
+    SELECT * FROM EMP;
+
+3.  Question: Display the ENAME and DEPTNO from EMP table whose EMPNO is
+    7788.
+
+Answer:
+
+    SELECT ENAME, DEPTNO
+    FROM EMP
+    WHERE EMPNO = 7788;
+
+Expected Output: ENAME DEPTNO SCOTT 20
